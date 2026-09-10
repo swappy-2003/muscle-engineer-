@@ -1,4 +1,4 @@
-import { ArrowUpRight, Camera } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -56,17 +56,17 @@ export function Footer() {
           <ul>
             <li>
               <a href="https://www.instagram.com/themuscleengineers/" target="_blank" rel="noreferrer">
-                Instagram <Camera size={14} strokeWidth={1.5} aria-hidden="true" />
+                Instagram <ArrowUpRight size={13} strokeWidth={1.5} aria-hidden="true" />
               </a>
             </li>
             <li>
-              <a href="#contact">
-                Facebook <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
+              <a href="https://www.youtube.com/results?search_query=Muscle+Engineers+Gym+Virar" target="_blank" rel="noreferrer">
+                YouTube <ArrowUpRight size={13} strokeWidth={1.5} aria-hidden="true" />
               </a>
             </li>
             <li>
-              <a href="#contact">
-                YouTube <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
+              <a href="https://www.facebook.com/themuscleengineers/" target="_blank" rel="noreferrer">
+                Facebook <ArrowUpRight size={13} strokeWidth={1.5} aria-hidden="true" />
               </a>
             </li>
           </ul>
