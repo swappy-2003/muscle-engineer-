@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 const gallery = [
-  { image: { src: "/images/facilites/hero2.png", alt: "Muscle Engineers main training floor" }, className: "facility-gallery__item--one", position: "center" },
+  { image: { src: "/images/facilites/reception.png", alt: "Muscle Engineers reception desk and supplement lounge" }, className: "facility-gallery__item--one", position: "center" },
   { image: { src: "/images/facilites/free-weights.png", alt: "Free weights area with dumbbell racks and red ceiling" }, className: "facility-gallery__item--two", position: "center" },
   { image: { src: "/images/facilites/hero2.png", alt: "Muscle Engineers main training floor" }, className: "facility-gallery__item--three", position: "center" },
 ];
