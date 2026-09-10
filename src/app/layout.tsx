@@ -24,6 +24,14 @@ export const metadata: Metadata = {
     title: "Muscle Engineers Fitness Hub | Gym in Virar West",
     description,
   },
+  icons: {
+    icon: [
+      { url: "/images/logo.png", sizes: "any" },
+      { url: "/icon.png" },
+    ],
+    shortcut: "/images/logo.png",
+    apple: "/images/logo.png",
+  },
 };
 
 const localBusinessSchema = {
