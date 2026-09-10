@@ -1,0 +1,87 @@
+import { ArrowUpRight, Camera } from "lucide-react";
+import Image from "next/image";
+
+const footerLinks = [
+  { label: "About", href: "#about" },
+  { label: "Trainers", href: "#trainers" },
+  { label: "Programs", href: "#programs" },
+  { label: "Facility", href: "/facility" },
+  { label: "Membership", href: "#membership" },
+  { label: "Contact", href: "#contact" },
+];
+
+export function Footer() {
+  return (
+    <footer className="site-footer">
+      <div className="footer-top">
+        <a className="footer-brand" href="#top" aria-label="Back to top">
+          <Image className="footer-logo" src="/images/logo.png" alt="" width={118} height={79} />
+          <span>
+            Muscle Engineers
+            <br />
+            Fitness Hub
+          </span>
+        </a>
+        <p className="footer-manifesto">
+          Engineer your body.
+          <br />
+          Build your life.
+        </p>
+      </div>
+
+      <div className="footer-grid">
+        <div>
+          <p className="footer-label">Visit</p>
+          <address>
+            3rd Floor, Kingston Court, 313,
+            <br />
+            near Old Viva College, Virar West,
+            <br />
+            Vasai-Virar, Maharashtra 401303
+          </address>
+        </div>
+        <div>
+          <p className="footer-label">Explore</p>
+          <ul>
+            {footerLinks.map((link) => (
+              <li key={link.href}>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p className="footer-label">Follow</p>
+          <ul>
+            <li>
+              <a href="https://www.instagram.com/themuscleengineers/" target="_blank" rel="noreferrer">
+                Instagram <Camera size={14} strokeWidth={1.5} aria-hidden="true" />
+              </a>
+            </li>
+            <li>
+              <a href="#contact">
+                Facebook <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
+              </a>
+            </li>
+            <li>
+              <a href="#contact">
+                YouTube <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <p className="footer-label">Speak to us</p>
+          <a className="footer-phone" href="tel:+917420883355">
+            +91 74208 83355
+          </a>
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        <span>© {new Date().getFullYear()} Muscle Engineers Fitness Hub</span>
+        <span>Virar West, Maharashtra</span>
+      </div>
+    </footer>
+  );
+}
