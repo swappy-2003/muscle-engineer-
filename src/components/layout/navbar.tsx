@@ -2,16 +2,17 @@
 
 import { ArrowUpRight, Camera, Menu, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const navigation = [
-  { label: "About", href: "#about" },
-  { label: "Trainers", href: "#trainers" },
-  { label: "Programs", href: "#programs" },
+  { label: "About", href: "/#about" },
+  { label: "Trainers", href: "/#trainers" },
+  { label: "Programs", href: "/#programs" },
   { label: "Facility", href: "/facility" },
-  { label: "Transformations", href: "#transformations" },
-  { label: "Membership", href: "#membership" },
-  { label: "Contact", href: "#contact" },
+  { label: "Transformations", href: "/#transformations" },
+  { label: "Membership", href: "/#membership" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 function BrandLockup() {
@@ -48,15 +49,15 @@ export function Navbar() {
     <>
       <header className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}>
         <nav className="site-nav" aria-label="Primary navigation">
-          <a className="brand-link" href="#top" aria-label="Back to top" onClick={close}>
+          <Link className="brand-link" href="/" aria-label="Muscle Engineers - Back to home" onClick={close}>
             <BrandLockup />
-          </a>
+          </Link>
 
           <div className="desktop-nav" aria-label="Primary links">
             {navigation.map((item) => (
-              <a href={item.href} key={item.href}>
+              <Link href={item.href} key={item.href}>
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -70,9 +71,9 @@ export function Navbar() {
             >
               <Camera size={17} strokeWidth={1.6} aria-hidden="true" />
             </a>
-            <a className="nav-join" href="#membership">
+            <Link className="nav-join" href="/#membership">
               Join now <ArrowUpRight size={15} strokeWidth={1.7} aria-hidden="true" />
-            </a>
+            </Link>
           </div>
 
           <button
@@ -90,16 +91,18 @@ export function Navbar() {
 
       <div className={`mobile-menu ${open ? "mobile-menu--open" : ""}`} id="mobile-navigation">
         <div className="mobile-menu__top">
-          <BrandLockup />
+          <Link href="/" onClick={close} style={{ textDecoration: "none", color: "inherit" }}>
+            <BrandLockup />
+          </Link>
           <span>Est. in Virar West</span>
         </div>
         <div className="mobile-menu__links">
           {navigation.map((item, index) => (
-            <a href={item.href} key={item.href} onClick={close}>
+            <Link href={item.href} key={item.href} onClick={close}>
               <span>0{index + 1}</span>
               {item.label}
               <ArrowUpRight size={20} strokeWidth={1.4} aria-hidden="true" />
-            </a>
+            </Link>
           ))}
         </div>
         <div className="mobile-menu__bottom">

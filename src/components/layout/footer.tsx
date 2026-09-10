@@ -1,27 +1,28 @@
 import { ArrowUpRight, Camera } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const footerLinks = [
-  { label: "About", href: "#about" },
-  { label: "Trainers", href: "#trainers" },
-  { label: "Programs", href: "#programs" },
+  { label: "About", href: "/#about" },
+  { label: "Trainers", href: "/#trainers" },
+  { label: "Programs", href: "/#programs" },
   { label: "Facility", href: "/facility" },
-  { label: "Membership", href: "#membership" },
-  { label: "Contact", href: "#contact" },
+  { label: "Membership", href: "/#membership" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-top">
-        <a className="footer-brand" href="#top" aria-label="Back to top">
+        <Link className="footer-brand" href="/" aria-label="Muscle Engineers - Back to home">
           <Image className="footer-logo" src="/images/logo.png" alt="" width={118} height={79} />
           <span>
             Muscle Engineers
             <br />
             Fitness Hub
           </span>
-        </a>
+        </Link>
         <p className="footer-manifesto">
           Engineer your body.
           <br />
@@ -45,7 +46,7 @@ export function Footer() {
           <ul>
             {footerLinks.map((link) => (
               <li key={link.href}>
-                <a href={link.href}>{link.label}</a>
+                <Link href={link.href}>{link.label}</Link>
               </li>
             ))}
           </ul>
