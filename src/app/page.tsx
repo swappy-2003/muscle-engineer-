@@ -10,6 +10,7 @@ import { Programs } from "@/components/sections/programs";
 import { Transformations } from "@/components/sections/transformations";
 import { Trainers } from "@/components/sections/trainers";
 import { WhatsappCta } from "@/components/whatsapp-cta";
+import { BackToTop } from "@/components/back-to-top";
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
         <Location />
       </main>
       <Footer />
+      <BackToTop />
       <WhatsappCta />
     </>
   );

@@ -7,6 +7,7 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { WhatsappCta } from "@/components/whatsapp-cta";
+import { BackToTop } from "@/components/back-to-top";
 
 import { FacilityGallery } from "@/components/sections/facility-gallery";
 
@@ -123,6 +124,7 @@ export default function FacilityPage() {
         </section>
       </main>
       <Footer />
+      <BackToTop />
       <WhatsappCta />
     </>
   );

@@ -82,6 +82,9 @@ export function Footer() {
       <div className="footer-bottom">
         <span>© {new Date().getFullYear()} Muscle Engineers Fitness Hub</span>
         <span>Virar West, Maharashtra</span>
+        <a href="#top" className="footer-back-to-top">
+          Back to top ↑
+        </a>
       </div>
     </footer>
   );
