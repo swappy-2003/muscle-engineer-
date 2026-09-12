@@ -44,7 +44,7 @@ export function Philosophy() {
           <p className="philosophy__body reveal reveal--up" data-scroll>
             Structured training, expert guidance and a community that pushes you to become more.
           </p>
-          <div className="philosophy__action reveal reveal--up" data-scroll>
+          <div className="philosophy__action reveal reveal--up" data-scroll style={{ marginTop: "48px" }}>
             <Link href="/about" className="action-link philosophy__about-btn">
               About Us &amp; Founder <ArrowUpRight size={16} strokeWidth={1.45} aria-hidden="true" />
             </Link>
