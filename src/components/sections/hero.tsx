@@ -1,9 +1,73 @@
+"use client";
+
 import Image from "next/image";
-import { ArrowDown, ArrowUpRight, Play } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Play, Volume2, VolumeX } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 import { images } from "@/lib/site-data";
 
 export function Hero() {
+  const [isMobile, setIsMobile] = useState(false);
+  const [isRevealed, setIsRevealed] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth <= 800;
+      setIsMobile(mobile);
+      if (mobile) {
+        setIsRevealed(false);
+        document.body.classList.add("mobile-intro-active");
+      } else {
+        setIsRevealed(true);
+        document.body.classList.remove("mobile-intro-active");
+      }
+    };
+
+    checkMobile();
+
+    return () => {
+      document.body.classList.remove("mobile-intro-active");
+    };
+  }, []);
+
+  const handleReveal = () => {
+    setIsRevealed(true);
+    document.body.classList.remove("mobile-intro-active");
+    // Ensure video loops smoothly as ambient background after reveal
+    if (videoRef.current) {
+      videoRef.current.muted = true;
+      setIsMuted(true);
+      videoRef.current.play().catch(() => {});
+    }
+    window.dispatchEvent(new Event("resize"));
+  };
+
+  const toggleSound = (e: React.MouseEvent | React.TouchEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      const nextMuted = !videoRef.current.muted;
+      videoRef.current.muted = nextMuted;
+      setIsMuted(nextMuted);
+    }
+  };
+
+  useEffect(() => {
+    if (isMobile && !isRevealed && videoRef.current) {
+      const video = videoRef.current;
+      video.muted = true;
+      video.currentTime = 0;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // If browser policy blocks autoplay, reveal immediately
+          handleReveal();
+        });
+      }
+    }
+  }, [isMobile, isRevealed]);
+
   return (
     <section className="hero" id="top" aria-labelledby="hero-title">
       <div className="hero-media" aria-hidden="true">
@@ -16,9 +80,46 @@ export function Hero() {
             sizes="100vw"
             className="hero-media__image"
           />
+          <video
+            ref={videoRef}
+            src="/images/Video-2542_1.mp4"
+            className="hero-media__mobile-video"
+            playsInline
+            autoPlay
+            muted={isMuted}
+            loop={isRevealed}
+            onEnded={handleReveal}
+            preload="auto"
+          />
         </div>
         <div className="hero-media__wash" />
       </div>
+
+      {isMobile && !isRevealed && (
+        <div
+          className="hero-mobile-intro-overlay"
+          onClick={handleReveal}
+          onTouchEnd={handleReveal}
+          role="button"
+          tabIndex={0}
+          aria-label="Tap screen to enter site"
+        >
+          <button
+            type="button"
+            className="hero-mobile-sound-btn"
+            onClick={toggleSound}
+            onTouchEnd={toggleSound}
+            aria-label={isMuted ? "Unmute video" : "Mute video"}
+          >
+            {isMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
+            <span>{isMuted ? "Unmute" : "Sound On"}</span>
+          </button>
+
+          <div className="hero-mobile-skip-hint">
+            <span>Tap screen to skip</span>
+          </div>
+        </div>
+      )}
 
       <div className="hero-content page-shell">
         <p className="hero-kicker load-reveal load-reveal--1">The culture of exercise science</p>
