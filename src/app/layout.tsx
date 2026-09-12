@@ -6,7 +6,7 @@ const description =
   "Muscle Engineers Fitness Hub is a fitness and training center in Virar West offering strength training, personal training, nutrition guidance and fitness programs for all levels.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://muscle-engineers.example.com"),
+  metadataBase: new URL("https://muscleengineer.netlify.app"),
   title: "Muscle Engineers Fitness Hub | Gym in Virar West",
   description,
   alternates: {
@@ -15,14 +15,30 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Muscle Engineers Fitness Hub | Gym in Virar West",
     description,
+    url: "https://muscleengineer.netlify.app",
     type: "website",
     locale: "en_IN",
     siteName: "Muscle Engineers Fitness Hub",
+    images: [
+      {
+        url: "/images/about-hero-banner-og.jpg",
+        width: 1200,
+        height: 513,
+        alt: "Muscle Engineers Fitness Hub - Built on Science. Driven by People.",
+      },
+      {
+        url: "/images/about-hero-banner.png",
+        width: 1918,
+        height: 820,
+        alt: "Muscle Engineers Fitness Hub Banner",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Muscle Engineers Fitness Hub | Gym in Virar West",
     description,
+    images: ["/images/about-hero-banner-og.jpg"],
   },
   icons: {
     icon: [
