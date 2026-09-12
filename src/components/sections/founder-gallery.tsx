@@ -84,13 +84,6 @@ export function FounderGallery() {
           <div className="founder-gallery__scrim" />
           <div className="founder-gallery__badge">{current.tag}</div>
 
-          <div className="founder-gallery__caption-box">
-            <p className="founder-gallery__caption">{current.caption}</p>
-            <span className="founder-gallery__counter">
-              {String(selectedIdx + 1).padStart(2, "0")} / {String(founderImages.length).padStart(2, "0")}
-            </span>
-          </div>
-
           <button
             type="button"
             className="founder-gallery__arrow founder-gallery__arrow--prev"
@@ -107,6 +100,13 @@ export function FounderGallery() {
           >
             <ArrowRight size={18} />
           </button>
+        </div>
+
+        <div className="founder-gallery__caption-box">
+          <p className="founder-gallery__caption">{current.caption}</p>
+          <span className="founder-gallery__counter">
+            {String(selectedIdx + 1).padStart(2, "0")} / {String(founderImages.length).padStart(2, "0")}
+          </span>
         </div>
       </div>
 
