@@ -76,6 +76,9 @@ export function Footer() {
           <a className="footer-phone" href="tel:+917420883355">
             +91 74208 83355
           </a>
+          <a className="footer-phone" href="tel:+917420882277">
+            +91 74208 82277
+          </a>
         </div>
       </div>
 
