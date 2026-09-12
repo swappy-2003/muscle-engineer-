@@ -17,8 +17,19 @@ export function Hero() {
       const mobile = window.innerWidth <= 800;
       setIsMobile(mobile);
       if (mobile) {
-        setIsRevealed(false);
-        document.body.classList.add("mobile-intro-active");
+        const alreadySeen = typeof window !== "undefined" && sessionStorage.getItem("hero_intro_seen") === "true";
+        const hasHash = typeof window !== "undefined" && Boolean(window.location.hash);
+
+        if (alreadySeen || hasHash) {
+          setIsRevealed(true);
+          document.body.classList.remove("mobile-intro-active");
+          try {
+            sessionStorage.setItem("hero_intro_seen", "true");
+          } catch {}
+        } else {
+          setIsRevealed(false);
+          document.body.classList.add("mobile-intro-active");
+        }
       } else {
         setIsRevealed(true);
         document.body.classList.remove("mobile-intro-active");
@@ -27,14 +38,27 @@ export function Hero() {
 
     checkMobile();
 
+    const onHashChange = () => {
+      if (window.location.hash) {
+        handleReveal();
+      }
+    };
+    window.addEventListener("hashchange", onHashChange);
+
     return () => {
       document.body.classList.remove("mobile-intro-active");
+      window.removeEventListener("hashchange", onHashChange);
     };
   }, []);
 
   const handleReveal = () => {
     setIsRevealed(true);
     document.body.classList.remove("mobile-intro-active");
+    if (typeof window !== "undefined") {
+      try {
+        sessionStorage.setItem("hero_intro_seen", "true");
+      } catch {}
+    }
     // Ensure video loops smoothly as ambient background after reveal
     if (videoRef.current) {
       videoRef.current.muted = true;
