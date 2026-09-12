@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, Award, CheckCircle2, Flame, Shield, Trophy } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Award, CheckCircle2, Dumbbell, Flame, Heart, MapPin, Shield, Star, Trophy, Users, Zap } from "lucide-react";
 
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { Navbar } from "@/components/layout/navbar";
@@ -13,14 +13,49 @@ import { FounderGallery } from "@/components/sections/founder-gallery";
 export const metadata: Metadata = {
   title: "About Us & Founder Gopal Faujdar | Muscle Engineers Fitness Hub",
   description:
-    "Discover the story of Muscle Engineers Fitness Hub in Virar West, founded in 2017 by competitive bodybuilder and IBBF National Champion Gopal Rajaram Faujdar. Learn our core philosophy, verified championship achievements, and elite training culture.",
+    "Discover the story of Muscle Engineers Fitness Hub in Virar West — established 2017, 4.6★ rated with 180+ reviews. Founded by competitive bodybuilder and IBBF National Champion Gopal Rajaram Faujdar. Strength training, cardio, personal training, yoga & more.",
 };
 
 const aboutHighlights = [
-  { number: "2017", label: "Established in Virar West" },
-  { number: "🥇 Gold", label: "2026 IBBF National Champion" },
-  { number: "🥉 Bronze", label: "2024 National Podium Finish" },
+  { number: "9+", label: "Years of Training" },
+  { number: "4.6★", label: "Member Rating" },
+  { number: "180+", label: "Public Reviews" },
+  { number: "2017", label: "Established" },
+  { number: "🥇", label: "National Champion 2026" },
   { number: "5,000+", label: "Sq Ft Training Space" },
+];
+
+const gymServices = [
+  {
+    icon: "dumbbell",
+    title: "Strength & Resistance Training",
+    desc: "Commercial-grade Jerai and Being Strong equipment, Olympic platforms, and free-weight stations for serious strength development.",
+  },
+  {
+    icon: "zap",
+    title: "Cardio Zone",
+    desc: "Dedicated cardio deck with treadmills, cross-trainers, and functional conditioning equipment for endurance and fat loss.",
+  },
+  {
+    icon: "users",
+    title: "Personal Training",
+    desc: "One-on-one coaching from certified trainers who tailor programs to your body type, goals, and schedule.",
+  },
+  {
+    icon: "heart",
+    title: "Nutrition Support",
+    desc: "Practical, sustainable nutrition guidance to complement your training — no fad diets, just science-backed advice.",
+  },
+  {
+    icon: "flame",
+    title: "Yoga & Flexibility",
+    desc: "Dedicated yoga sessions for mobility, recovery, and mental focus — essential for injury prevention and overall well-being.",
+  },
+  {
+    icon: "shield",
+    title: "Locker & Amenities",
+    desc: "Secure locker facility, clean changing rooms, and a welcoming environment where you can focus entirely on your workout.",
+  },
 ];
 
 const achievements = [
@@ -77,22 +112,32 @@ const milestones = [
   {
     year: "2017",
     title: "The Inception",
-    desc: "Founded in Virar West by Gopal Rajaram Faujdar with a mission to bring true exercise science, discipline, and high-standard equipment to the community.",
+    desc: "Gopal Rajaram Faujdar establishes Muscle Engineers in Virar West with a mission to bring true exercise science, discipline, and high-standard equipment to the community.",
+  },
+  {
+    year: "2018",
+    title: "Early Recognition",
+    desc: "The gym gains early traction in the Virar fitness community. A Fitternity walkthrough video showcases the facility, drawing new members from across Vasai-Virar.",
   },
   {
     year: "2020",
     title: "Facility Expansion",
-    desc: "Scaled up to 5,000+ square feet of training area, adding commercial Jerai and Being Strong machinery, Olympic platforms, and functional cardio deck.",
+    desc: "Scaled up to 5,000+ square feet across multiple floors at Kingston Court, near Old Viva College. Added commercial Jerai and Being Strong machinery, Olympic platforms, and a functional cardio deck.",
+  },
+  {
+    year: "2023",
+    title: "Community Milestone",
+    desc: "Crosses 150+ public reviews with a consistent 4.6★ rating. Personal training, nutrition support, and yoga classes are added to the offerings.",
   },
   {
     year: "2024",
     title: "National Podium",
-    desc: "Founder Gopal Faujdar secures 3rd place in the Above 80 kg category at the 14th National Body Building Championship, putting Muscle Engineers on the national map.",
+    desc: "Founder Gopal Faujdar secures 3rd place (Bronze) in the Above 80 kg Masters category at the 14th IBBF National Championship, putting Muscle Engineers on the national bodybuilding map.",
   },
   {
     year: "2026",
     title: "National Championship Gold",
-    desc: "Achieves 1st Place (Gold Medal) at the IBBF 16th Men's National Championship, reinforcing the gym's ethos: led by a founder who lives the discipline every day.",
+    desc: "Achieves 1st Place (Gold Medal) at the IBBF 16th Men's National Championship. 180+ public reviews and growing — the gym's ethos is validated: led by a founder who lives the discipline every day.",
   },
 ];
 
@@ -120,17 +165,17 @@ export default function AboutPage() {
               <ArrowLeft size={16} strokeWidth={1.6} /> Back to home
             </Link>
             <p className="section-label section-label--light reveal" data-scroll>
-              The Founder & The Philosophy • Estd. 2017
+              Our Story • Estd. 2017 • Virar West, Maharashtra
             </p>
             <h1 className="display-heading display-heading--light reveal reveal--up" data-scroll>
-              Built from the <em>passion</em>
+              Built by a <em>competitor.</em>
               <br />
-              to build <em>strength.</em>
+              Built for people who want to become <em>stronger.</em>
             </h1>
             <p className="about-hero__sub reveal reveal--up" data-scroll>
-              Muscle Engineers was born from a fundamental belief: strength is not an accident.
-              It is forged through discipline, consistency, and an uncompromising commitment to
-              continuous self-improvement.
+              Established in 2017, Muscle Engineers has grown alongside the fitness community
+              of Virar — from a single floor of iron to a 5,000+ sq ft training hub trusted by
+              180+ reviewed members and led by a national champion.
             </p>
           </div>
         </section>
@@ -145,6 +190,107 @@ export default function AboutPage() {
                   <span className="about-highlight__label">{h.label}</span>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* The Gym Story Section */}
+        <section className="about-gym-story section-light" id="our-story">
+          <div className="page-shell">
+            <div className="about-gym-story__header">
+              <div>
+                <p className="section-label reveal" data-scroll>
+                  The Muscle Engineers Story
+                </p>
+                <h2 className="display-heading reveal reveal--up" data-scroll>
+                  More than a gym — <em>a training culture.</em>
+                </h2>
+              </div>
+              <p className="about-gym-story__subtitle reveal reveal--up" data-scroll>
+                What started as a single-floor training space in Virar West has evolved into one of
+                the most trusted fitness communities in Vasai-Virar, with a 4.6★ rating across 180+ public reviews.
+              </p>
+            </div>
+
+            <div className="about-gym-story__content reveal reveal--up" data-scroll>
+              <div className="about-gym-story__text">
+                <p>
+                  Muscle Engineers was founded in 2017 with a simple idea — build a place where
+                  people can train seriously, develop discipline, and become stronger. Not a franchise.
+                  Not a chain. A gym built by someone who lives the sport.
+                </p>
+                <p>
+                  Located at Kingston Court, near Old Viva College in Virar West, the facility has
+                  grown to over 5,000 square feet across multiple floors — equipped with commercial-grade
+                  Jerai and Being Strong machinery, Olympic platforms, a dedicated cardio deck, and
+                  spaces for yoga and personal training.
+                </p>
+                <p>
+                  Years later, that philosophy continues to be lived by its founder,{" "}
+                  <strong>Gopal Rajaram Faujdar</strong>, who remains active in competitive bodybuilding
+                  — capturing a National Gold Medal at the IBBF 16th Men&apos;s Championship in 2026.
+                  That&apos;s significantly more credible than generic fitness marketing.
+                </p>
+              </div>
+
+              <div className="about-gym-story__trust">
+                <div className="trust-badge">
+                  <Star size={20} strokeWidth={1.5} />
+                  <div>
+                    <span className="trust-badge__value">4.6 / 5</span>
+                    <span className="trust-badge__label">Average Rating</span>
+                  </div>
+                </div>
+                <div className="trust-badge">
+                  <Users size={20} strokeWidth={1.5} />
+                  <div>
+                    <span className="trust-badge__value">180+</span>
+                    <span className="trust-badge__label">Public Reviews</span>
+                  </div>
+                </div>
+                <div className="trust-badge">
+                  <MapPin size={20} strokeWidth={1.5} />
+                  <div>
+                    <span className="trust-badge__value">Virar West</span>
+                    <span className="trust-badge__label">Vasai-Virar, Maharashtra</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* What We Offer Section */}
+        <section className="about-services section-dark" id="services">
+          <div className="page-shell">
+            <div className="about-services__header">
+              <div>
+                <p className="section-label section-label--light reveal" data-scroll>
+                  What We Offer
+                </p>
+                <h2 className="display-heading display-heading--light reveal reveal--up" data-scroll>
+                  Everything you need to <em>train seriously.</em>
+                </h2>
+              </div>
+              <p className="about-services__subtitle reveal reveal--up" data-scroll>
+                From heavy iron to guided yoga, nutrition coaching to personal training —
+                Muscle Engineers is designed for complete athletic development.
+              </p>
+            </div>
+
+            <div className="about-services__grid">
+              {gymServices.map((s) => {
+                const IconComponent = s.icon === "dumbbell" ? Dumbbell : s.icon === "zap" ? Zap : s.icon === "users" ? Users : s.icon === "heart" ? Heart : s.icon === "flame" ? Flame : Shield;
+                return (
+                  <article className="service-card reveal reveal--up" data-scroll key={s.title}>
+                    <div className="service-card__icon">
+                      <IconComponent size={24} strokeWidth={1.5} />
+                    </div>
+                    <h3 className="service-card__title">{s.title}</h3>
+                    <p className="service-card__desc">{s.desc}</p>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
