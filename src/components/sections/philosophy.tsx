@@ -1,4 +1,5 @@
-import { Apple, FlaskConical, Gauge, UsersRound } from "lucide-react";
+import { Apple, ArrowUpRight, FlaskConical, Gauge, UsersRound } from "lucide-react";
+import Link from "next/link";
 
 const principles = [
   {
@@ -43,6 +44,11 @@ export function Philosophy() {
           <p className="philosophy__body reveal reveal--up" data-scroll>
             Structured training, expert guidance and a community that pushes you to become more.
           </p>
+          <div className="philosophy__action reveal reveal--up" data-scroll>
+            <Link href="/about" className="action-link philosophy__about-btn">
+              About Us &amp; Founder <ArrowUpRight size={16} strokeWidth={1.45} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
 
         <div className="principles" aria-label="Our approach">
@@ -58,3 +64,4 @@ export function Philosophy() {
     </section>
   );
 }
+

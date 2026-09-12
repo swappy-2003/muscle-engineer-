@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowDown, ArrowUpRight, Play, Volume2, VolumeX } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -163,12 +164,12 @@ export function Hero() {
             <a className="action-link action-link--light" href="#membership">
               Start your journey <ArrowUpRight size={17} strokeWidth={1.45} aria-hidden="true" />
             </a>
-            <a className="watch-link" href="#facility">
+            <Link className="watch-link" href="/about">
               <span className="watch-link__icon">
                 <Play size={10} fill="currentColor" strokeWidth={1.5} aria-hidden="true" />
               </span>
-              Watch our story
-            </a>
+              Our story &amp; founder
+            </Link>
           </div>
         </div>
       </div>
