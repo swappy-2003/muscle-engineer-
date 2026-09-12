@@ -5,9 +5,9 @@ const programs = [
   {
     title: "Strength\ntraining",
     eyebrow: "01 / Build capacity",
-    image: { src: "/images/programs/strength-training.png", alt: "Gym dumbbell rack for strength training" },
+    image: { src: "/images/programs/strength-training.png", alt: "Heavy dumbbell rack for strength training" },
     className: "program-card--feature",
-    position: "center top",
+    position: "center",
   },
   {
     title: "Weight\nloss",
