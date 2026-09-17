@@ -176,7 +176,7 @@ export function Hero() {
 
       <div className="hero-bottom page-shell load-reveal load-reveal--5">
         <span className="hero-signature">
-          <Image className="hero-logo" src="/images/logo.png" alt="" width={118} height={79} />
+          <Image className="hero-logo" src="/images/logo.png" alt="Muscle Engineers Fitness Hub logo" width={118} height={79} />
           <span>
             Muscle Engineers
             <br />

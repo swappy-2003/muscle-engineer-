@@ -12,9 +12,76 @@ import { BackToTop } from "@/components/back-to-top";
 import { FacilityGallery } from "@/components/sections/facility-gallery";
 
 export const metadata: Metadata = {
-  title: "Our Facility | Muscle Engineers Fitness Hub",
+  title: "Our Facility & Equipment | Muscle Engineers Fitness Hub Virar",
   description:
-    "Take a tour of Muscle Engineers Fitness Hub — 5,000+ sq ft premium training facility in Virar West featuring Olympic squat stations, Jerai & Being Strong machines, cardio deck, boxing rig, and supplement lounge.",
+    "Explore Muscle Engineers Fitness Hub — 5,000+ sq ft world-class gym in Virar West featuring Olympic lifting platforms, commercial Jerai and Being Strong machinery, cardio deck, boxing rig, and personal training bays.",
+  keywords: [
+    "gym facility virar west",
+    "jerai gym equipment virar",
+    "being strong gym virar",
+    "olympic lifting virar",
+    "cardio deck virar west",
+    "biggest gym virar",
+    "muscle engineers equipment",
+    "5000 sq ft gym virar",
+  ],
+  alternates: {
+    canonical: "/facility",
+  },
+  openGraph: {
+    title: "Our Facility & Equipment | Muscle Engineers Fitness Hub Virar",
+    description:
+      "Explore Muscle Engineers Fitness Hub — 5,000+ sq ft world-class gym in Virar West featuring Olympic lifting platforms, commercial Jerai and Being Strong machinery, cardio deck, and boxing rig.",
+    url: "https://muscleengineer.netlify.app/facility",
+    type: "website",
+    locale: "en_IN",
+    siteName: "Muscle Engineers Fitness Hub",
+    images: [
+      {
+        url: "/images/facilites/hero2.png",
+        width: 1920,
+        height: 1080,
+        alt: "Muscle Engineers Gym Training Floor in Virar West",
+      },
+      {
+        url: "/images/facility.jpg",
+        width: 1200,
+        height: 800,
+        alt: "Muscle Engineers Facility Overview",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Our Facility & Equipment | Muscle Engineers Fitness Hub Virar",
+    description:
+      "Explore Muscle Engineers Fitness Hub — 5,000+ sq ft world-class gym in Virar West featuring Olympic lifting platforms, commercial Jerai & Being Strong machinery.",
+    images: ["/images/facilites/hero2.png"],
+  },
+};
+
+const facilitySchema = {
+  "@context": "https://schema.org",
+  "@type": "SportsActivityLocation",
+  name: "Muscle Engineers Fitness Hub - Facility",
+  url: "https://muscleengineer.netlify.app/facility",
+  image: "https://muscleengineer.netlify.app/images/facilites/hero2.png",
+  description:
+    "5,000+ sq ft premium fitness training facility in Virar West with 100+ commercial equipment units, Olympic platforms, and dedicated training bays.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "3rd Floor, Kingston Court, 313, near Old Viva College, Virar West",
+    addressLocality: "Vasai-Virar",
+    addressRegion: "Maharashtra",
+    postalCode: "401303",
+    addressCountry: "IN",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 19.457572,
+    longitude: 72.801428,
+  },
+  telephone: "+91 74208 83355",
 };
 
 const highlights = [
@@ -27,6 +94,10 @@ const highlights = [
 export default function FacilityPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(facilitySchema) }}
+      />
       <ScrollReveal />
       <Navbar />
       <main>

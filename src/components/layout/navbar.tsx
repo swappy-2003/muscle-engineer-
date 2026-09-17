@@ -75,7 +75,7 @@ function FacebookIcon({ size = 17 }: { size?: number }) {
 function BrandLockup() {
   return (
     <span className="brand-lockup" aria-label="Muscle Engineers Fitness Hub">
-      <Image className="brand-logo" src="/images/logo.png" alt="" width={118} height={79} priority />
+      <Image className="brand-logo" src="/images/logo.png" alt="Muscle Engineers Fitness Hub logo" width={118} height={79} priority />
       <span className="brand-wordmark">
         <span>Muscle Engineers</span>
         <span>Fitness Hub</span>

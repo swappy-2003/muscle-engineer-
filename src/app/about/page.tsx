@@ -14,12 +14,27 @@ export const metadata: Metadata = {
   title: "About Us & Founder Gopal Faujdar | Muscle Engineers Fitness Hub",
   description:
     "Discover the story of Muscle Engineers Fitness Hub in Virar West — established 2017, 4.6★ rated with 180+ reviews. Founded by competitive bodybuilder and IBBF National Champion Gopal Rajaram Faujdar. Strength training, cardio, personal training, yoga & more.",
+  keywords: [
+    "gopal rajaram faujdar",
+    "gopal faujdar bodybuilder",
+    "muscle engineers virar",
+    "about muscle engineers",
+    "ibbf national champion gym virar",
+    "best gym owner virar",
+    "bodybuilding coach vasai virar",
+    "virar west fitness history",
+  ],
+  alternates: {
+    canonical: "/about",
+  },
   openGraph: {
     title: "About Us & Founder Gopal Faujdar | Muscle Engineers Fitness Hub",
     description:
       "Discover the story of Muscle Engineers Fitness Hub in Virar West — established 2017, 4.6★ rated with 180+ reviews. Founded by competitive bodybuilder and IBBF National Champion Gopal Rajaram Faujdar.",
     url: "https://muscleengineer.netlify.app/about",
     type: "website",
+    locale: "en_IN",
+    siteName: "Muscle Engineers Fitness Hub",
     images: [
       {
         url: "/images/about-hero-banner-og.jpg",
@@ -42,6 +57,47 @@ export const metadata: Metadata = {
       "Discover the story of Muscle Engineers Fitness Hub in Virar West — established 2017, 4.6★ rated with 180+ reviews. Founded by IBBF National Champion Gopal Rajaram Faujdar.",
     images: ["/images/about-hero-banner-og.jpg"],
   },
+};
+
+const aboutPageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "AboutPage",
+      "@id": "https://muscleengineer.netlify.app/about#webpage",
+      "url": "https://muscleengineer.netlify.app/about",
+      "name": "About Us & Founder Gopal Faujdar | Muscle Engineers Fitness Hub",
+      "description":
+        "Discover the story of Muscle Engineers Fitness Hub in Virar West — established 2017, 4.6★ rated with 180+ reviews. Founded by competitive bodybuilder and IBBF National Champion Gopal Rajaram Faujdar.",
+      "about": {
+        "@type": "SportsActivityLocation",
+        "name": "Muscle Engineers Fitness Hub",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "3rd Floor, Kingston Court, 313, near Old Viva College, Virar West",
+          "addressLocality": "Vasai-Virar",
+          "addressRegion": "Maharashtra",
+          "postalCode": "401303",
+          "addressCountry": "IN",
+        },
+      },
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Gopal Rajaram Faujdar",
+        "jobTitle": "Founder & Competitive Athlete",
+        "description":
+          "IBBF National Gold Medalist bodybuilder and founder of Muscle Engineers Fitness Hub in Virar West.",
+        "award": [
+          "1st Place — National Champion, IBBF 16th Men's Junior/Masters Championship 2026",
+          "3rd Place — National Bronze, 14th Junior/Masters/Divyang National Championship 2024",
+        ],
+        "worksFor": {
+          "@type": "SportsActivityLocation",
+          "name": "Muscle Engineers Fitness Hub",
+        },
+      },
+    },
+  ],
 };
 
 const aboutHighlights = [
@@ -172,6 +228,10 @@ const milestones = [
 export default function AboutPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
+      />
       <ScrollReveal />
       <Navbar />
       <main>

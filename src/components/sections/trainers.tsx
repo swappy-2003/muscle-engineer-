@@ -55,38 +55,117 @@ const trainersData = [
   },
 ];
 
+const extendedTrainers = [...trainersData, ...trainersData, ...trainersData];
+const N = trainersData.length;
+
 export function Trainers() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(N);
+  const [isTransitioning, setIsTransitioning] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+
+  const isAnimating = useRef(false);
+  const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const currentIndexRef = useRef(currentIndex);
+  currentIndexRef.current = currentIndex;
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
   useEffect(() => {
     const handleResize = () => {
-      const mobile = window.innerWidth <= 800;
-      setIsMobile(mobile);
-      // Reset index bounds if resizing from mobile to desktop
-      if (!mobile && currentIndex > trainersData.length - 2) {
-        setCurrentIndex(trainersData.length - 2);
-      }
+      setIsMobile(window.innerWidth <= 800);
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [currentIndex]);
-
-  const maxIndex = isMobile ? trainersData.length - 1 : trainersData.length - 2;
+  }, []);
 
   const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-  }, [maxIndex]);
+    if (isAnimating.current) return;
+    isAnimating.current = true;
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev + 1);
+
+    if (animationTimeoutRef.current) clearTimeout(animationTimeoutRef.current);
+    animationTimeoutRef.current = setTimeout(() => {
+      isAnimating.current = false;
+    }, 700);
+  }, []);
 
   const prevSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
-  }, [maxIndex]);
+    if (isAnimating.current) return;
+    isAnimating.current = true;
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev - 1);
+
+    if (animationTimeoutRef.current) clearTimeout(animationTimeoutRef.current);
+    animationTimeoutRef.current = setTimeout(() => {
+      isAnimating.current = false;
+    }, 700);
+  }, []);
+
+  const goToSlide = useCallback((targetRealIndex: number) => {
+    if (isAnimating.current) return;
+    const currentReal = currentIndexRef.current % N;
+    if (targetRealIndex === currentReal) return;
+
+    let diff = targetRealIndex - currentReal;
+    if (diff > N / 2) {
+      diff -= N;
+    } else if (diff < -N / 2) {
+      diff += N;
+    }
+
+    isAnimating.current = true;
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev + diff);
+
+    if (animationTimeoutRef.current) clearTimeout(animationTimeoutRef.current);
+    animationTimeoutRef.current = setTimeout(() => {
+      isAnimating.current = false;
+    }, 700);
+  }, []);
+
+  const handleTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
+    if (e.target !== e.currentTarget) return;
+    if (animationTimeoutRef.current) {
+      clearTimeout(animationTimeoutRef.current);
+    }
+
+    const current = currentIndexRef.current;
+    if (current >= N * 2) {
+      setIsTransitioning(false);
+      setCurrentIndex(current - N);
+    } else if (current < N) {
+      setIsTransitioning(false);
+      setCurrentIndex(current + N);
+    } else {
+      isAnimating.current = false;
+    }
+  };
+
+  useEffect(() => {
+    if (!isTransitioning) {
+      const frame1 = requestAnimationFrame(() => {
+        const frame2 = requestAnimationFrame(() => {
+          setIsTransitioning(true);
+          isAnimating.current = false;
+        });
+        return () => cancelAnimationFrame(frame2);
+      });
+      return () => cancelAnimationFrame(frame1);
+    }
+  }, [isTransitioning]);
+
+  useEffect(() => {
+    return () => {
+      if (animationTimeoutRef.current) {
+        clearTimeout(animationTimeoutRef.current);
+      }
+    };
+  }, []);
 
   // Auto-play timer (4.5s)
   useEffect(() => {
@@ -102,6 +181,7 @@ export function Trainers() {
   // Touch Swipe Handlers for Mobile
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX;
     setIsPaused(true);
   };
 
@@ -120,6 +200,8 @@ export function Trainers() {
     }
     setIsPaused(false);
   };
+
+  const activeRealIndex = currentIndex % N;
 
   return (
     <section className="trainers section-light" id="trainers" aria-labelledby="trainers-title">
@@ -151,7 +233,7 @@ export function Trainers() {
         >
           <div className="trainers__slider-header">
             <span className="trainers__slider-counter">
-              {String(currentIndex + 1).padStart(2, "0")} / {String(trainersData.length).padStart(2, "0")}
+              {String(activeRealIndex + 1).padStart(2, "0")} / {String(N).padStart(2, "0")}
             </span>
             <div className="trainers__slider-nav">
               <button
@@ -181,14 +263,18 @@ export function Trainers() {
           >
             <div
               className="trainers__slider-track"
+              onTransitionEnd={handleTransitionEnd}
               style={{
                 transform: isMobile
                   ? `translateX(calc(-${currentIndex} * (100% + 12px)))`
                   : `translateX(calc(-${currentIndex} * (50% + 8px)))`,
+                transition: isTransitioning
+                  ? "transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1)"
+                  : "none",
               }}
             >
-              {trainersData.map((trainer) => (
-                <article className="trainer-card" key={trainer.name}>
+              {extendedTrainers.map((trainer, index) => (
+                <article className="trainer-card" key={`${trainer.name}-${index}`}>
                   <Image
                     src={trainer.image}
                     alt={`${trainer.name} - ${trainer.role} at Muscle Engineers`}
@@ -209,13 +295,13 @@ export function Trainers() {
           </div>
 
           <div className="trainers__slider-dots">
-            {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
+            {trainersData.map((_, idx) => (
               <button
                 key={idx}
                 type="button"
-                className={`trainers__slider-dot ${idx === currentIndex ? "trainers__slider-dot--active" : ""}`}
-                onClick={() => setCurrentIndex(idx)}
-                aria-label={`Go to slide ${idx + 1}`}
+                className={`trainers__slider-dot ${idx === activeRealIndex ? "trainers__slider-dot--active" : ""}`}
+                onClick={() => goToSlide(idx)}
+                aria-label={`Go to coach ${idx + 1}`}
               />
             ))}
           </div>

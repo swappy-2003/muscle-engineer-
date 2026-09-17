@@ -16,7 +16,7 @@ export function Footer() {
     <footer className="site-footer">
       <div className="footer-top">
         <Link className="footer-brand" href="/" aria-label="Muscle Engineers - Back to home">
-          <Image className="footer-logo" src="/images/logo.png" alt="" width={118} height={79} />
+          <Image className="footer-logo" src="/images/logo.png" alt="Muscle Engineers Fitness Hub logo" width={118} height={79} />
           <span>
             Muscle Engineers
             <br />
