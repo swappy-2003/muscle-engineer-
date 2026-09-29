@@ -1,58 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Dumbbell, HeartPulse, Target } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { trainersData } from "@/lib/trainers";
 
 const coachingFocus = [
   { icon: Dumbbell, title: "Strength coaching", copy: "Build sound movement patterns and real capacity." },
   { icon: Target, title: "Goal-led plans", copy: "Training that follows where you want to go." },
   { icon: HeartPulse, title: "Sustainable support", copy: "Guidance that works with your life, not against it." },
-];
-
-const trainersData = [
-  {
-    name: "Roshan Mandre",
-    role: "Head Strength Coach",
-    specialty: "Hypertrophy & Powerlifting",
-    experience: "8+ Years Experience",
-    image: "/images/trainers/roshan-mandre.png",
-  },
-  {
-    name: "Suresh Tumbade",
-    role: "Senior Fitness Coach",
-    specialty: "Functional Movement & Conditioning",
-    experience: "7+ Years Experience",
-    image: "/images/trainers/suresh-tumbade.png",
-  },
-  {
-    name: "Suraj Sharma",
-    role: "Physique & Transformation Specialist",
-    specialty: "Body Recomposition & Fat Loss",
-    experience: "6+ Years Experience",
-    image: "/images/trainers/suraj-sharma.png",
-  },
-  {
-    name: "Sudhir Mankar",
-    role: "Strength & Mobility Coach",
-    specialty: "Biomechanics & Injury Prevention",
-    experience: "6+ Years Experience",
-    image: "/images/trainers/sudhir-mankar.png",
-  },
-  {
-    name: "Sagar Salawat",
-    role: "Athletic Performance Coach",
-    specialty: "Endurance & Explosive Power",
-    experience: "5+ Years Experience",
-    image: "/images/trainers/sagar-salawat.png",
-  },
-  {
-    name: "Manish Pawar",
-    role: "Personal Transformation Coach",
-    specialty: "Custom Training & Lifestyle Coaching",
-    experience: "5+ Years Experience",
-    image: "/images/trainers/manish-pawar.png",
-  },
 ];
 
 const extendedTrainers = [...trainersData, ...trainersData, ...trainersData];
@@ -220,9 +177,9 @@ export function Trainers() {
           <p className="trainers__body reveal reveal--up" data-scroll>
             Our coaches bring attention, structure and accountability to every session—whether you are beginning again or pushing further.
           </p>
-          <a className="action-link trainers__cta reveal reveal--up" data-scroll href="tel:+917420883355">
-            Speak to a coach <ArrowUpRight size={17} strokeWidth={1.4} aria-hidden="true" />
-          </a>
+          <Link className="action-link trainers__cta reveal reveal--up" data-scroll href="/trainers">
+            Meet the team <ArrowUpRight size={17} strokeWidth={1.4} aria-hidden="true" />
+          </Link>
         </div>
 
         <div
@@ -275,6 +232,7 @@ export function Trainers() {
             >
               {extendedTrainers.map((trainer, index) => (
                 <article className="trainer-card" key={`${trainer.name}-${index}`}>
+                  <Link href={`/trainers/${trainer.slug}`} style={{ position: "absolute", inset: 0, zIndex: 3 }} aria-label={`View ${trainer.name}'s profile`} />
                   <Image
                     src={trainer.image}
                     alt={`${trainer.name} - ${trainer.role} at Muscle Engineers`}
