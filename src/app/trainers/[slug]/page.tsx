@@ -48,7 +48,7 @@ export async function generateMetadata({
       siteName: "Muscle Engineers Fitness Hub",
       images: [
         {
-          url: trainer.image,
+          url: `https://muscleengineer.netlify.app${trainer.image}`,
           width: 800,
           height: 1000,
           alt: `${trainer.name} — ${trainer.role} at Muscle Engineers`,
@@ -59,7 +59,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: `${trainer.name} — ${trainer.role} | Muscle Engineers`,
       description: `${trainer.name} specialises in ${trainer.specialty}. ${trainer.experience}.`,
-      images: [trainer.image],
+      images: [`https://muscleengineer.netlify.app${trainer.image}`],
     },
   };
 }
